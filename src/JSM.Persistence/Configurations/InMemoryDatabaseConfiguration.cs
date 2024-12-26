@@ -6,10 +6,10 @@ namespace JSM.Persistence.Configurations
 {
     public static class InMemoryDatabaseConfiguration
     {
-        public static void Configure(IServiceCollection services)
+        public static void Configure(IServiceCollection services, string dbName)
         {
             services.AddDbContext<JsmContext>(options => 
-                options.UseInMemoryDatabase(Guid.NewGuid().ToString()));
+                options.UseInMemoryDatabase(dbName));
         }
     }
 }
