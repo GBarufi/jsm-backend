@@ -7,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.ConfigureDependencyInjection();
 builder.Services.ConfigureMediator();
 builder.Services.ConfigureInMemoryDatabase(builder.Configuration);
 builder.Services.AddHostedService<RequestExternalData>();
