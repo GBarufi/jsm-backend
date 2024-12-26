@@ -14,4 +14,8 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\JSM.Persistence\JSM.Persistence.csproj" />
+  </ItemGroup>
+
 </Project>
