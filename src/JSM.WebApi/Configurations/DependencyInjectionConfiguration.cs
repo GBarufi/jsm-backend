@@ -8,8 +8,8 @@ namespace JSM.WebApi.Configurations
     {
         public static void ConfigureDependencyInjection(this IServiceCollection services)
         {
+            services.AddTransient<ICsvHelper, Application.Core.CsvHelper>();
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CommandValidationBehavior<,>));
-            services.AddScoped<ICsvHelper, CsvHelper>();
         }
     }
 }
