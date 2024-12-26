@@ -1,9 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using JSM.Domain.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace JSM.Persistence.Contexts
 {
-    public class JsmContext : DbContext
+    public class JsmContext(DbContextOptions options) : DbContext(options)
     {
-        public JsmContext(DbContextOptions options) : base(options) { }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<CustomerLocation> Locations { get; set; }
+        public DbSet<CustomerPortrait> Portraits { get; set; }
     }
 }
