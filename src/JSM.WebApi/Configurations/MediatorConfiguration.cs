@@ -1,4 +1,4 @@
-﻿namespace JSM.WebApi.Configuration
+﻿namespace JSM.WebApi.Configurations
 {
     public static class MediatorConfiguration
     {

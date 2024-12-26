@@ -1,4 +1,4 @@
-using JSM.WebApi.Configuration;
+using JSM.WebApi.Configurations;
 using JSM.WebApi.HostedServices;
 
 var builder = WebApplication.CreateBuilder(args);
