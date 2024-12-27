@@ -2,27 +2,25 @@
 using CsvHelper.TypeConversion;
 using CsvHelper;
 using System.Globalization;
-using System.Text;
 using JSM.Application.Core.Interfaces;
 
 namespace JSM.Application.Core
 {
     public class CsvHelper : ICsvHelper
     {
-        public List<T> ImportCsv<T, TCsvMapper>(string file) where T : class where TCsvMapper : ClassMap<T>
+        public List<T> ImportCsv<T, TCsvMapper>(byte[] file) where T : class where TCsvMapper : ClassMap<T>
         {
             try
             {
-                using var memoryStream = new MemoryStream(Convert.FromBase64String(file));
-                using var reader = new StreamReader(memoryStream, Encoding.Latin1);
+                using var memoryStream = new MemoryStream(file);
+                using var reader = new StreamReader(memoryStream);
 
-                var csvConfiguration = new CsvConfiguration(CultureInfo.CurrentCulture);
+                var csvConfiguration = new CsvConfiguration(CultureInfo.InvariantCulture);
                 using var csv = new CsvReader(reader, csvConfiguration);
 
                 csv.Context.RegisterClassMap<TCsvMapper>();
-                var newListCsv = csv.GetRecords<T>().ToList();
 
-                return newListCsv;
+                return csv.GetRecords<T>().ToList();
             }
             catch (TypeConverterException ex)
             {

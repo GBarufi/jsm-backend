@@ -23,7 +23,7 @@ namespace JSM.WebApi.HostedServices
 
             var httpClient = new HttpClient();
             var httpResponse = await httpClient.GetAsync(requestUrl!, cancellationToken!);
-            var command = new CreateCustomerFromCsvCommand { Content = await httpResponse.Content.ReadAsStringAsync(cancellationToken) };
+            var command = new CreateCustomerFromCsvCommand { Content = await httpResponse.Content.ReadAsByteArrayAsync(cancellationToken) };
 
             await _mediator.Send(command, cancellationToken);
         }

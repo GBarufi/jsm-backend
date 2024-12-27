@@ -4,6 +4,6 @@ namespace JSM.Application.Core.Interfaces
 {
     public interface ICsvHelper
     {
-        List<T> ImportCsv<T, CsvMapper>(string file) where T : class where CsvMapper : ClassMap<T>;
+        List<T> ImportCsv<T, CsvMapper>(byte[] file) where T : class where CsvMapper : ClassMap<T>;
     }
 }
