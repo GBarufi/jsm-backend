@@ -15,8 +15,8 @@ namespace JSM.Domain.Models
         public string Email { get; private set; } = string.Empty;
         public DateTime Birthday { get; private set; }
         public DateTime Registered { get; private set; }
-        public string TelephoneNumber { get; private set; } = string.Empty;
-        public string MobileNumber { get; private set; } = string.Empty;
+        public string[] TelephoneNumber { get; private set; } = [];
+        public string[] MobileNumber { get; private set; } = [];
         public CustomerNationality Nationality { get; private set; }
 
         public CustomerLocation? Location { get; private set; }
@@ -46,8 +46,8 @@ namespace JSM.Domain.Models
             Email = email;
             Birthday = birthday;
             Registered = registered;
-            TelephoneNumber = telephoneNumber;
-            MobileNumber = mobileNumber;
+            TelephoneNumber = [telephoneNumber];
+            MobileNumber = [mobileNumber];
             Nationality = nationality;
             Location = location;
             Portrait = portrait;
