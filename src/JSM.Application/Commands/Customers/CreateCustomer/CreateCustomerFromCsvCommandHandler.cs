@@ -1,11 +1,11 @@
 ﻿using MediatR;
 using JSM.Application.Core.Interfaces;
+using JSM.Application.Core.Utils;
 using JSM.Application.Mappers.Customers;
 using JSM.Application.Dtos;
 using JSM.Domain.Enums;
 using JSM.Domain.Extensions;
 using JSM.Domain.Models;
-using JSM.Domain.Utils;
 using JSM.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
 

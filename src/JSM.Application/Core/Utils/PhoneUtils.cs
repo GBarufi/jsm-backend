@@ -1,7 +1,7 @@
 ﻿
 using System.Text.RegularExpressions;
 
-namespace JSM.Domain.Utils
+namespace JSM.Application.Core.Utils
 {
     public static partial class PhoneUtils
     {
