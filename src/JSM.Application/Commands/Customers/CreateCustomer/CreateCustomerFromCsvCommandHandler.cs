@@ -3,6 +3,7 @@ using JSM.Application.Core.Interfaces;
 using JSM.Application.Mappers.Customers;
 using JSM.Application.Dtos;
 using JSM.Domain.Enums;
+using JSM.Domain.Extensions;
 using JSM.Domain.Models;
 using JSM.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
@@ -29,13 +30,13 @@ namespace JSM.Application.Commands.Customers.CreateCustomer
             {
                 var newCustomer = new Customer(
                     CustomerType.Normal,
-                    CustomerGender.M,
+                    csvRow.Gender!.GetEnumValueFromDisplayName<CustomerGender>(),
                     csvRow.Name.Title,
                     csvRow.Name.First,
                     csvRow.Name.Last,
                     csvRow.Email,
-                    DateTime.Now,
-                    DateTime.Now,
+                    (DateTime)csvRow.Dob.Date,
+                    (DateTime)csvRow.Registered.Date,
                     csvRow.Phone,
                     csvRow.Cell,
                     CustomerNationality.BR,
