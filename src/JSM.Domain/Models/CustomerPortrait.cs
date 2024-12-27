@@ -10,5 +10,12 @@ namespace JSM.Domain.Models
         public string Thumbnail { get; private set; } = string.Empty;
 
         private CustomerPortrait() { }
+
+        public CustomerPortrait(string large, string medium, string thumbnail)
+        {
+            Large = large;
+            Medium = medium;
+            Thumbnail = thumbnail;
+        }
     }
 }

@@ -17,5 +17,27 @@ namespace JSM.Domain.Models
         public string TimezoneDescription { get; private set; } = string.Empty;
 
         private CustomerLocation() { }
+
+        public CustomerLocation( 
+            LocationRegion region, 
+            string street, 
+            string city, 
+            string state, 
+            string postCode, 
+            string latitude, 
+            string longitude, 
+            string timezoneOffset, 
+            string timezoneDescription)
+        {
+            Region = region;
+            Street = street;
+            City = city;
+            State = state;
+            PostCode = postCode;
+            Latitude = latitude;
+            Longitude = longitude;
+            TimezoneOffset = timezoneOffset;
+            TimezoneDescription = timezoneDescription;
+        }
     }
 }

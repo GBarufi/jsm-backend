@@ -21,5 +21,35 @@ namespace JSM.Domain.Models
         public CustomerPortrait? Portrait { get; private set; }
 
         private Customer() { }
+
+        public Customer(
+            CustomerType type, 
+            CustomerGender gender, 
+            string title, 
+            string firstName, 
+            string lastName, 
+            string email, 
+            DateTime birthday, 
+            DateTime registered, 
+            string[] telephoneNumbers, 
+            string[] mobileNumbers, 
+            CustomerNationality nationality, 
+            CustomerLocation location, 
+            CustomerPortrait portrait)
+        {
+            Type = type;
+            Gender = gender;
+            Title = title;
+            FirstName = firstName;
+            LastName = lastName;
+            Email = email;
+            Birthday = birthday;
+            Registered = registered;
+            TelephoneNumbers = telephoneNumbers;
+            MobileNumbers = mobileNumbers;
+            Nationality = nationality;
+            Location = location;
+            Portrait = portrait;
+        }
     }
 }
