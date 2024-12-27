@@ -14,18 +14,11 @@ namespace JSM.Application.Core
 
         public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
         {
-            if (typeof(TRequest).IsSubclassOf(typeof(CsvRequestBase<TResponse>)))
-            {
-                var csvRequest = (request as CsvRequestBase<TResponse>)!;
-                if (!csvRequest.IsValid(_csvHelper))
-                    return default!;
-            } 
-            else
-            {
-                if (!request.IsValid())
-                    return default!;
-            }
-            
+            bool requestIsValid = (request is ICsvRequest csvRequest) ? csvRequest.IsValid(_csvHelper) : request.IsValid();
+
+            if (!requestIsValid)
+                return default!;
+                
             var response = await next();
 
             return response;

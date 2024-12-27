@@ -28,7 +28,7 @@ namespace JSM.Application.Core
             }
         }
 
-        public bool ValidateCSV<T>(byte[] file, string[] expectedFields) where T : class
+        public bool ValidateCsv<T>(byte[] file, string[] expectedFields) where T : class
         {
             var isValid = true;
 

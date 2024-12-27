@@ -13,7 +13,7 @@ namespace JSM.Application.Core
                 .Cascade(CascadeMode.Stop)
                 .NotNull()
                 .NotEmpty()
-                .Must(content => csvHelper.ValidateCSV<CustomerCsvDto>(content!, ExpectedFields));
+                .Must(content => csvHelper.ValidateCsv<CustomerCsvDto>(content!, ExpectedFields));
         }
     }
 }
