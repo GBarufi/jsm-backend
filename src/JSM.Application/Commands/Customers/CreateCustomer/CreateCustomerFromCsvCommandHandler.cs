@@ -36,8 +36,8 @@ namespace JSM.Application.Commands.Customers.CreateCustomer
                     csvRow.Email,
                     DateTime.Now,
                     DateTime.Now,
-                    [csvRow.Phone],
-                    [csvRow.Cell],
+                    csvRow.Phone,
+                    csvRow.Cell,
                     CustomerNationality.BR,
                     new CustomerLocation(
                         LocationRegion.South,

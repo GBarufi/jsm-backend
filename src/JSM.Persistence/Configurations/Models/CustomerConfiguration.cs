@@ -33,10 +33,10 @@ namespace JSM.Persistence.Configurations.Models
             builder.Property(x => x.Registered)
                 .IsRequired();
 
-            builder.Property(x => x.TelephoneNumbers)
+            builder.Property(x => x.TelephoneNumber)
                 .IsRequired();
 
-            builder.Property(x => x.MobileNumbers)
+            builder.Property(x => x.MobileNumber)
                 .IsRequired();
 
             builder.Property(x => x.Nationality)
