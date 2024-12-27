@@ -16,7 +16,7 @@ namespace JSM.Application.Mappers.Customers
             Map(x => x.Location!.State).Index(6);
             Map(x => x.Location!.PostCode).Index(7);
             Map(x => x.Location!.Coordinates!.Latitude).Index(8);
-            Map(x => x.Location!.Coordinates!.Latitude).Index(9);
+            Map(x => x.Location!.Coordinates!.Longitude).Index(9);
             Map(x => x.Location!.Timezone!.Offset).Index(10);
             Map(x => x.Location!.Timezone!.Description).Index(11);
             Map(x => x.Email).Index(12);
