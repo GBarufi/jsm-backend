@@ -8,7 +8,7 @@ namespace JSM.Persistence.Configurations
     {
         public static void Configure(IServiceCollection services, string dbName)
         {
-            services.AddDbContext<JsmContext>(options => 
+            services.AddDbContextFactory<JsmContext>(options =>
                 options.UseInMemoryDatabase(dbName));
         }
     }
