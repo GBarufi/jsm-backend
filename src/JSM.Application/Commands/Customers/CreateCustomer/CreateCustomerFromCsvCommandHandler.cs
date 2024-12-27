@@ -40,7 +40,6 @@ namespace JSM.Application.Commands.Customers.CreateCustomer
                     csvRow.Cell,
                     CustomerNationality.BR,
                     new CustomerLocation(
-                        LocationRegion.South,
                         csvRow.Location.Street,
                         csvRow.Location.City,
                         csvRow.Location.State,

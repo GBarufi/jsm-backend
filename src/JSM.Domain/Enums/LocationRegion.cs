@@ -4,7 +4,7 @@
     {
         North,
         Northeast,
-        CentroOeste,
+        Midwest,
         Southeast,
         South
     }

@@ -1,4 +1,5 @@
 ﻿using JSM.Domain.Enums;
+using JSM.Domain.Extensions;
 using JSM.Domain.Models.Base;
 
 namespace JSM.Domain.Models
@@ -18,18 +19,17 @@ namespace JSM.Domain.Models
 
         private CustomerLocation() { }
 
-        public CustomerLocation( 
-            LocationRegion region, 
-            string street, 
-            string city, 
-            string state, 
-            string postCode, 
-            string latitude, 
-            string longitude, 
-            string timezoneOffset, 
+        public CustomerLocation(
+            string street,
+            string city,
+            string state,
+            string postCode,
+            string latitude,
+            string longitude,
+            string timezoneOffset,
             string timezoneDescription)
         {
-            Region = region;
+            Region = StateRegions[state.GetEnumValueFromDisplayName<LocationState>()];
             Street = street;
             City = city;
             State = state;
@@ -39,5 +39,36 @@ namespace JSM.Domain.Models
             TimezoneOffset = timezoneOffset;
             TimezoneDescription = timezoneDescription;
         }
+
+        private Dictionary<LocationState, LocationRegion> StateRegions = new Dictionary<LocationState, LocationRegion>
+        {
+            { LocationState.RS, LocationRegion.South },
+            { LocationState.SC, LocationRegion.South },
+            { LocationState.PR, LocationRegion.South },
+            { LocationState.SP, LocationRegion.Southeast },
+            { LocationState.RJ, LocationRegion.Southeast },
+            { LocationState.MG, LocationRegion.Southeast },
+            { LocationState.ES, LocationRegion.Southeast },
+            { LocationState.BA, LocationRegion.Northeast },
+            { LocationState.PE, LocationRegion.Northeast },
+            { LocationState.CE, LocationRegion.Northeast },
+            { LocationState.RN, LocationRegion.Northeast },
+            { LocationState.PB, LocationRegion.Northeast },
+            { LocationState.PI, LocationRegion.Northeast },
+            { LocationState.AL, LocationRegion.Northeast },
+            { LocationState.SE, LocationRegion.Northeast },
+            { LocationState.MA, LocationRegion.Northeast },
+            { LocationState.MT, LocationRegion.Midwest },
+            { LocationState.MS, LocationRegion.Midwest },
+            { LocationState.GO, LocationRegion.Midwest },
+            { LocationState.DF, LocationRegion.Midwest },
+            { LocationState.AM, LocationRegion.North },
+            { LocationState.PA, LocationRegion.North },
+            { LocationState.RO, LocationRegion.North },
+            { LocationState.AC, LocationRegion.North },
+            { LocationState.RR, LocationRegion.North },
+            { LocationState.AP, LocationRegion.North },
+            { LocationState.TO, LocationRegion.North }
+        };
     }
 }
