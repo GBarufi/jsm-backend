@@ -1,5 +1,7 @@
 ﻿using JSM.Domain.Enums;
 using JSM.Domain.Models.Base;
+using JSM.Domain.Strategies.Customer;
+using System.Globalization;
 
 namespace JSM.Domain.Models
 {
@@ -23,7 +25,6 @@ namespace JSM.Domain.Models
         private Customer() { }
 
         public Customer(
-            CustomerType type, 
             CustomerGender gender, 
             string title, 
             string firstName, 
@@ -37,7 +38,7 @@ namespace JSM.Domain.Models
             CustomerLocation location, 
             CustomerPortrait portrait)
         {
-            Type = type;
+            Type = GetTypeAccordingToCoordinates(location.Latitude, location.Longitude);
             Gender = gender;
             Title = title;
             FirstName = firstName;
@@ -50,6 +51,26 @@ namespace JSM.Domain.Models
             Nationality = nationality;
             Location = location;
             Portrait = portrait;
+        }
+
+        private CustomerType GetTypeAccordingToCoordinates(string latitude, string longitude)
+        {
+            var customerTypeStrategies = new List<ICustomerTypeStrategy> {
+                new SpecialCustomerStrategy(),
+                new HardCustomerStrategy(),
+                new NormalCustomerStrategy()
+            };
+
+            foreach (var strategy in customerTypeStrategies)
+            {
+                var parsedLatitude = double.Parse(latitude, CultureInfo.InvariantCulture);
+                var parsedLongitude = double.Parse(longitude, CultureInfo.InvariantCulture);
+
+                if (strategy.CustomerBelongsToType(parsedLatitude, parsedLongitude))
+                    return strategy.Type;
+            }
+
+            return CustomerType.Laborious;
         }
     }
 }

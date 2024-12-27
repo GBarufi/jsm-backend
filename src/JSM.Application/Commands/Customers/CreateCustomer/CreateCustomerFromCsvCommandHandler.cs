@@ -29,7 +29,6 @@ namespace JSM.Application.Commands.Customers.CreateCustomer
             foreach (var csvRow in csvData)
             {
                 var newCustomer = new Customer(
-                    CustomerType.Normal,
                     csvRow.Gender!.GetEnumValueFromDisplayName<CustomerGender>(),
                     csvRow.Name.Title,
                     csvRow.Name.First,
