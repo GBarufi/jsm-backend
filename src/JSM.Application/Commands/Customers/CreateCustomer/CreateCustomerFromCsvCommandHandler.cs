@@ -5,6 +5,7 @@ using JSM.Application.Dtos;
 using JSM.Domain.Enums;
 using JSM.Domain.Extensions;
 using JSM.Domain.Models;
+using JSM.Domain.Utils;
 using JSM.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
 
@@ -36,8 +37,8 @@ namespace JSM.Application.Commands.Customers.CreateCustomer
                     csvRow.Email,
                     (DateTime)csvRow.Dob.Date,
                     (DateTime)csvRow.Registered.Date,
-                    csvRow.Phone,
-                    csvRow.Cell,
+                    PhoneUtils.ConvertToE164(csvRow.Phone),
+                    PhoneUtils.ConvertToE164(csvRow.Cell),
                     CustomerNationality.BR,
                     new CustomerLocation(
                         csvRow.Location.Street,
