@@ -3,8 +3,7 @@ using JSM.Application.Dtos.Customers;
 
 namespace JSM.Application.Queries.Customers
 {
-    public record GetCustomersQuery : RequestBase<List<GetCustomersResponse>>
+    public record GetCustomersQuery : PaginatedRequest<GetCustomersResponse>
     {
-        public override bool IsValid() => true;
     }
 }
