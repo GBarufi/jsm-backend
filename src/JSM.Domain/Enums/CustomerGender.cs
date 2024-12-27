@@ -5,9 +5,9 @@ namespace JSM.Domain.Enums
     public enum CustomerGender
     {
         [Display(Name = "Male")]
-        M = 1,
+        M,
 
         [Display(Name = "Female")]
-        F = 2
+        F
     }
 }
