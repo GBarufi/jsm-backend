@@ -1,6 +1,6 @@
 ﻿namespace JSM.Application.Dtos.Customers
 {
-    public record CustomerCsvDto
+    public record CustomerDto
     {
         public string? Gender { get; init; }
         public CustomerName Name { get; init; } = new();

@@ -25,7 +25,7 @@ namespace JSM.Application.Commands.Customers.CreateCustomer
         public async Task<int> Handle(CreateCustomerFromCsvCommand request, CancellationToken cancellationToken)
         {
             using var dbContext = await _dbContextFactory.CreateDbContextAsync(cancellationToken);
-            var csvData = _csvHelper.ImportCsv<CustomerCsvDto, CustomerCsvMapper>(request.Content!).ToList();
+            var csvData = _csvHelper.ImportCsv<CustomerDto, CustomerCsvMapper>(request.Content!).ToList();
 
             foreach (var csvRow in csvData)
             {

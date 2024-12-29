@@ -7,7 +7,7 @@ namespace JSM.Application.Commands.Customers.CreateCustomer
     public record CreateCustomersFromJsonCommand : RequestBase<int>
     {
         [JsonProperty("Results")]
-        public List<CustomerCsvDto>? CustomersList { get; init; }
+        public List<CustomerDto>? CustomersList { get; init; }
 
         public override bool IsValid()
         {

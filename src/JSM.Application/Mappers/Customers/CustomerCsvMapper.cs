@@ -3,7 +3,7 @@ using JSM.Application.Dtos.Customers;
 
 namespace JSM.Application.Mappers.Customers
 {
-    public class CustomerCsvMapper : ClassMap<CustomerCsvDto>
+    public class CustomerCsvMapper : ClassMap<CustomerDto>
     {
         public CustomerCsvMapper()
         {
