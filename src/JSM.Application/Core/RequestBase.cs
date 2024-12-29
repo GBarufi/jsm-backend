@@ -7,7 +7,7 @@ namespace JSM.Application.Core
     public abstract record RequestBase<T> : IRequest<T>
     {
         [JsonIgnore]
-        public virtual ValidationResult? ValidationResult { get; protected set; }
+        protected virtual ValidationResult? ValidationResult { get; set; }
 
         public abstract bool IsValid();
     }
