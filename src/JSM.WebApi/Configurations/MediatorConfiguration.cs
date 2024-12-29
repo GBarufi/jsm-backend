@@ -1,10 +1,12 @@
-﻿namespace JSM.WebApi.Configurations
+﻿using JSM.Application.Core.Utils;
+
+namespace JSM.WebApi.Configurations
 {
     public static class MediatorConfiguration
     {
         public static void ConfigureMediator(this IServiceCollection services)
         {
-            Application.Configurations.MediatorConfiguration.Configure(services);
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(AssemblyUtils.GetAssembly()));
         }
     }
 }
