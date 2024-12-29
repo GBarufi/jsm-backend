@@ -11,7 +11,7 @@ builder.Services.ConfigureDependencyInjection();
 builder.Services.ConfigureMediator();
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
 builder.Services.ConfigureInMemoryDatabase(builder.Configuration);
-builder.Services.AddHostedService<RequestExternalData>();
+builder.Services.AddHostedService<ExecuteStartupRequests>();
 
 var app = builder.Build();
 
