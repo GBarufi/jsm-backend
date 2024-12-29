@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace JSM.Application.Commands.Customers.CreateCustomer
 {
-    public class CreateCustomerFromJsonCommandHandler : IRequestHandler<CreateCustomerFromJsonCommand, int>
+    public class CreateCustomerFromJsonCommandHandler : IRequestHandler<CreateCustomersFromJsonCommand, int>
     {
         private readonly IDbContextFactory<JsmContext> _dbContextFactory;
 
@@ -17,7 +17,7 @@ namespace JSM.Application.Commands.Customers.CreateCustomer
             _dbContextFactory = dbContextFactory;
         }
 
-        public async Task<int> Handle(CreateCustomerFromJsonCommand request, CancellationToken cancellationToken)
+        public async Task<int> Handle(CreateCustomersFromJsonCommand request, CancellationToken cancellationToken)
         {
             using var dbContext = await _dbContextFactory.CreateDbContextAsync(cancellationToken);
             var customersToAdd = request.CustomersList;

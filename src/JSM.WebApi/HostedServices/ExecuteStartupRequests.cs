@@ -49,10 +49,10 @@ namespace JSM.WebApi.HostedServices
             httpResponse.EnsureSuccessStatusCode();
 
             var jsonString = httpResponse.Content.ReadAsStringAsync(cancellationToken).Result;
-            var command = JsonConvert.DeserializeObject<CreateCustomerFromJsonCommand>(jsonString);
+            var command = JsonConvert.DeserializeObject<CreateCustomersFromJsonCommand>(jsonString);
 
             if (command is null)
-                throw new ArgumentException(nameof(CreateCustomerFromJsonCommand));
+                throw new ArgumentException(nameof(CreateCustomersFromJsonCommand));
 
             await _mediator.Send(command, cancellationToken);
         }

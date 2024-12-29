@@ -4,7 +4,7 @@ using JSM.Domain.Extensions;
 
 namespace JSM.Application.Commands.Customers.CreateCustomer
 {
-    public class CreateCustomerFromJsonValidation : AbstractValidator<CreateCustomerFromJsonCommand>
+    public class CreateCustomerFromJsonValidation : AbstractValidator<CreateCustomersFromJsonCommand>
     {
         public CreateCustomerFromJsonValidation()
         {
