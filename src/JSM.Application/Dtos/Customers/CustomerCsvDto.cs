@@ -1,4 +1,4 @@
-﻿namespace JSM.Application.Dtos
+﻿namespace JSM.Application.Dtos.Customers
 {
     public record CustomerCsvDto
     {

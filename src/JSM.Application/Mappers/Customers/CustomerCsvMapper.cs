@@ -1,5 +1,5 @@
 ﻿using CsvHelper.Configuration;
-using JSM.Application.Dtos;
+using JSM.Application.Dtos.Customers;
 
 namespace JSM.Application.Mappers.Customers
 {

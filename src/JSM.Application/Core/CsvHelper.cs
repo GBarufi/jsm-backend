@@ -1,8 +1,8 @@
-﻿using CsvHelper.Configuration;
+﻿using CsvHelper;
+using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
-using CsvHelper;
-using System.Globalization;
 using JSM.Application.Core.Interfaces;
+using System.Globalization;
 
 namespace JSM.Application.Core
 {

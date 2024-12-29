@@ -1,6 +1,6 @@
 ﻿using JSM.Domain.Models.Base;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace JSM.Persistence.Configurations.Models.Base
 {

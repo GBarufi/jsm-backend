@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 using JSM.Application.Core.Interfaces;
-using JSM.Application.Dtos;
+using JSM.Application.Dtos.Customers;
 
 namespace JSM.Application.Core
 {
