@@ -4,10 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace JSM.WebApi.Controllers
 {
-    [ApiController]
-    public class CustomersController : ControllerBase
+    public class CustomersController : ApiControllerBase
     {
-        private const string _routeBase = "api/v1/customers";
         private readonly IMediator _mediator;
 
         public CustomersController(IMediator mediator)
@@ -16,7 +14,6 @@ namespace JSM.WebApi.Controllers
         }
 
         [HttpGet]
-        [Route($"{_routeBase}")]
         public async Task<ActionResult> GetCustomersList([FromQuery] GetCustomersQuery getCustomersQuery)
         {
             var result = await _mediator.Send(getCustomersQuery);
