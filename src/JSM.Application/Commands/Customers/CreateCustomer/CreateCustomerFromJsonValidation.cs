@@ -14,9 +14,7 @@ namespace JSM.Application.Commands.Customers.CreateCustomer
                 .NotEmpty()
                 .ChildRules(customer =>
                 {
-                    customer.RuleFor(x => x.Gender)
-                            .NotEmpty()
-                            .Must(x => BeIncludedInEnumDisplayNames<CustomerGender>(x!));
+                    customer.RuleFor(x => x.Gender).NotEmpty().Must(x => BeIncludedInEnumDisplayNames<CustomerGender>(x!));
 
                     customer.RuleFor(x => x.Name).NotNull();
                     customer.RuleFor(x => x.Name.Title).NotEmpty();
@@ -26,7 +24,7 @@ namespace JSM.Application.Commands.Customers.CreateCustomer
                     customer.RuleFor(x => x.Location).NotNull();
                     customer.RuleFor(x => x.Location.Street).NotEmpty();
                     customer.RuleFor(x => x.Location.City).NotEmpty();
-                    customer.RuleFor(x => x.Location.State).NotEmpty();
+                    customer.RuleFor(x => x.Location.State).NotEmpty().Must(x => BeIncludedInEnumDisplayNames<LocationState>(x!));
                     customer.RuleFor(x => x.Location.PostCode).NotEmpty();
 
                     customer.RuleFor(x => x.Location.Coordinates).NotNull();
@@ -58,7 +56,7 @@ namespace JSM.Application.Commands.Customers.CreateCustomer
         {
             return Enum.GetValues<T>()
                 .Select(x => x.GetDisplayName().ToLower()).ToList()
-                .Contains(value);
+                .Contains(value.ToLower());
         }
 
         private static bool BeAValidDouble(string value) => double.TryParse(value, out _);
