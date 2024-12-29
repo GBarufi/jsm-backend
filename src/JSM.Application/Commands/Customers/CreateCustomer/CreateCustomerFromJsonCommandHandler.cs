@@ -26,29 +26,29 @@ namespace JSM.Application.Commands.Customers.CreateCustomer
             {
                 var newCustomer = new Customer(
                     customer.Gender!.GetEnumValueFromDisplayName<CustomerGender>(),
-                    customer.Name.Title,
-                    customer.Name.First,
-                    customer.Name.Last,
-                    customer.Email,
-                    (DateTime)customer.Dob.Date,
-                    (DateTime)customer.Registered.Date,
-                    PhoneUtils.ConvertToE164(customer.Phone),
-                    PhoneUtils.ConvertToE164(customer.Cell),
+                    customer.Name.Title!,
+                    customer.Name.First!,
+                    customer.Name.Last!,
+                    customer.Email!,
+                    customer.Dob.Date!.Value,
+                    customer.Registered.Date!.Value,
+                    PhoneUtils.ConvertToE164(customer.Phone!),
+                    PhoneUtils.ConvertToE164(customer.Cell!),
                     CustomerNationality.BR,
                     new CustomerLocation(
-                        customer.Location.Street,
-                        customer.Location.City,
-                        customer.Location.State,
-                        customer.Location.PostCode,
-                        customer.Location.Coordinates.Latitude,
-                        customer.Location.Coordinates.Longitude,
-                        customer.Location.Timezone.Offset,
-                        customer.Location.Timezone.Description
+                        customer.Location.Street!,
+                        customer.Location.City!,
+                        customer.Location.State!,
+                        customer.Location.PostCode!,
+                        customer.Location.Coordinates.Latitude!,
+                        customer.Location.Coordinates.Longitude!,
+                        customer.Location.Timezone.Offset!,
+                        customer.Location.Timezone.Description!
                     ),
                     new CustomerPortrait(
-                        customer.Picture.Large,
-                        customer.Picture.Medium,
-                        customer.Picture.Thumbnail
+                        customer.Picture.Large!,
+                        customer.Picture.Medium!,
+                        customer.Picture.Thumbnail!
                     )
                 );
 
