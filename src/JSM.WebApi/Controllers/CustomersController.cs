@@ -7,7 +7,7 @@ namespace JSM.WebApi.Controllers
     [ApiController]
     public class CustomersController : ControllerBase
     {
-        private const string _routeBase = "v1/customers";
+        private const string _routeBase = "api/v1/customers";
         private readonly IMediator _mediator;
 
         public CustomersController(IMediator mediator)
