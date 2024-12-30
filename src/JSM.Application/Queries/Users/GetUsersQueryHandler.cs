@@ -1,4 +1,7 @@
-﻿using JSM.Application.Dtos.Users;
+﻿using JSM.Application.Core.Extensions;
+using JSM.Application.Dtos.Users;
+using JSM.Domain.Enums;
+using JSM.Domain.Extensions;
 using JSM.Domain.Models;
 using JSM.Persistence.Contexts;
 using MediatR;
@@ -24,6 +27,8 @@ namespace JSM.Application.Queries.Users
                 .Include(x => x.Portrait)
                 .AsNoTracking();
 
+            ApplyFilters(ref usersQuery, request);
+
             var users = await usersQuery
                 .Skip(request.Page!.Value * request.Size!.Value)
                 .Take(request.Size!.Value)
@@ -33,6 +38,21 @@ namespace JSM.Application.Queries.Users
             var totalItems = await usersQuery.CountAsync(cancellationToken);
 
             return new GetPaginatedUsersResponse(users, totalItems, request.Page.Value, request.Size.Value);
+        }
+
+        private static void ApplyFilters(ref IQueryable<User> query, GetUsersQuery request)
+        {
+            query = query.WhereIf(!string.IsNullOrEmpty(request.Name), x =>
+                x.FirstName.Contains(request.Name!, StringComparison.CurrentCultureIgnoreCase) || x.LastName.Contains(request.Name!, StringComparison.CurrentCultureIgnoreCase));
+
+            query = query.WhereIf(!string.IsNullOrEmpty(request.Region), x =>
+                x.Location!.Region == (LocationRegion)Enum.Parse(typeof(LocationRegion), request.Region!, true));
+
+            query = query.WhereIf(!string.IsNullOrEmpty(request.State), x =>
+                x.Location!.State.GetEnumValueFromDisplayName<LocationState>() == (LocationState)Enum.Parse(typeof(LocationState), request.State!, true));
+
+            query = query.WhereIf(!string.IsNullOrEmpty(request.City), x =>
+                x.Location!.City.Contains(request.City!, StringComparison.CurrentCultureIgnoreCase));
         }
 
         private static GetUsersResponse ConvertModelToResponse(User x)
