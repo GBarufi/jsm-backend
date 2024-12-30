@@ -8,19 +8,28 @@ namespace JSM.WebApi.HostedServices
     {
         private readonly IMediator _mediator;
         private readonly IConfiguration _configuration;
+        private readonly ILogger<ExecuteStartupRequests> _logger;
 
-        public ExecuteStartupRequests(IMediator mediator, IConfiguration configuration)
+        public ExecuteStartupRequests(IMediator mediator, IConfiguration configuration, ILogger<ExecuteStartupRequests> logger)
         {
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
             _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         public async Task StartAsync(CancellationToken cancellationToken)
         {
             var httpClient = new HttpClient();
 
-            await ExecuteCsvRequest(httpClient, cancellationToken);
-            await ExecuteJsonRequest(httpClient, cancellationToken);
+            try
+            {
+                await ExecuteCsvRequest(httpClient, cancellationToken);
+                await ExecuteJsonRequest(httpClient, cancellationToken);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Unexpected error on execute startup requests. Details: '{ex.Message}'");
+            }
         }
 
         private async Task ExecuteCsvRequest(HttpClient client, CancellationToken cancellationToken)
@@ -28,7 +37,7 @@ namespace JSM.WebApi.HostedServices
             var requestUrl = _configuration.GetValue("StartupCsvRequestUrl", string.Empty);
 
             if (string.IsNullOrEmpty(requestUrl))
-                throw new ArgumentException(nameof(requestUrl));
+                throw new Exception("The CSV request URL has not been defined in the application settings.");
 
             var httpResponse = await client.GetAsync(requestUrl!, cancellationToken!);
             httpResponse.EnsureSuccessStatusCode();
@@ -43,7 +52,7 @@ namespace JSM.WebApi.HostedServices
             var requestUrl = _configuration.GetValue("StartupJsonRequestUrl", string.Empty);
 
             if (string.IsNullOrEmpty(requestUrl))
-                throw new ArgumentException(nameof(requestUrl));
+                throw new Exception("The JSON request URL has not been defined in the application settings.");
 
             var httpResponse = await client.GetAsync(requestUrl!, cancellationToken!);
             httpResponse.EnsureSuccessStatusCode();
