@@ -13,7 +13,8 @@ namespace JSM.Application.Core
                 .Cascade(CascadeMode.Stop)
                 .NotNull()
                 .NotEmpty()
-                .Must(content => csvHelper.ValidateCsv<UserInputDto>(content!, ExpectedFields));
+                .Must(content => csvHelper.ValidateCsv<UserInputDto>(content!, ExpectedFields))
+                .WithMessage($"The uploaded CSV columns don't match the expected columns. The expected columns are {string.Join(", ", ExpectedFields)}");
         }
     }
 }
