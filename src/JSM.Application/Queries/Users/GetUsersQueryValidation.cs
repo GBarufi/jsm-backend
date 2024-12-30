@@ -10,19 +10,22 @@ namespace JSM.Application.Queries.Users
             When(x => !string.IsNullOrEmpty(x.Region), () =>
             {
                 RuleFor(x => x.Region)
-                    .Must(x => BeIncludedInEnumDescriptions<LocationRegion>(x!));
+                    .Must(x => BeIncludedInEnumDescriptions<LocationRegion>(x!))
+                    .WithMessage($"Invalid region. Valid regions are {string.Join(", ", Enum.GetNames(typeof(LocationRegion)))}");
             });
 
             When(x => !string.IsNullOrEmpty(x.State), () =>
             {
                 RuleFor(x => x.State)
-                    .Must(x => BeIncludedInEnumDescriptions<LocationState>(x!));
+                    .Must(x => BeIncludedInEnumDescriptions<LocationState>(x!))
+                    .WithMessage($"Invalid state. Valid states are {string.Join(", ", Enum.GetNames(typeof(LocationState)))}");
             });
 
             When(x => !string.IsNullOrEmpty(x.Type), () =>
             {
                 RuleFor(x => x.Type)
-                    .Must(x => BeIncludedInEnumDescriptions<UserType>(x!));
+                    .Must(x => BeIncludedInEnumDescriptions<UserType>(x!))
+                    .WithMessage($"Invalid user type. Valid types are {string.Join(", ", Enum.GetNames(typeof(UserType)))}");
             });
         }
 
