@@ -1,12 +1,22 @@
-﻿namespace JSM.Application.Core
+﻿using System.Text.Json.Serialization;
+
+namespace JSM.Application.Core
 {
-    public class PaginatedResponse<T>
+    public abstract class PaginatedResponse<T>
     {
+        [JsonPropertyOrder(-4)]
         public int PageNumber { get; init; }
+
+        [JsonPropertyOrder(-3)]
         public int PageSize { get; init; }
+
+        [JsonPropertyOrder(-2)]
         public int TotalCount { get; init; }
+
+        [JsonPropertyOrder(-1)]
         public int TotalPages { get; init; }
-        public List<T>? Data { get; init; }
+
+        public abstract void SetData(List<T>? data);
 
         public PaginatedResponse() { }
 
@@ -16,7 +26,7 @@
             PageSize = data?.Count ?? 0;
             TotalCount = totalItems;
             TotalPages = (int)Math.Ceiling((double)totalItems / pageSize);
-            Data = data;
+            SetData(data);
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace JSM.Application.Core
 {
-    public record PaginatedRequest<T> : RequestBase<PaginatedResponse<T>>
+    public record PaginatedRequest<T> : RequestBase<T>
     {
         [BindProperty(Name = "pageNumber")]
         public int? Page { get; init; } = 0;

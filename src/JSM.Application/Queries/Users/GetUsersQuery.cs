@@ -3,7 +3,7 @@ using JSM.Application.Dtos.Users;
 
 namespace JSM.Application.Queries.Users
 {
-    public record GetUsersQuery : PaginatedRequest<GetUsersResponse>
+    public record GetUsersQuery : PaginatedRequest<GetPaginatedUsersResponse>
     {
     }
 }

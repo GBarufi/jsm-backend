@@ -1,5 +1,4 @@
-﻿using JSM.Application.Core;
-using JSM.Application.Dtos.Users;
+﻿using JSM.Application.Dtos.Users;
 using JSM.Domain.Models;
 using JSM.Persistence.Contexts;
 using MediatR;
@@ -7,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace JSM.Application.Queries.Users
 {
-    public class GetUsersQueryHandler : IRequestHandler<GetUsersQuery, PaginatedResponse<GetUsersResponse>>
+    public class GetUsersQueryHandler : IRequestHandler<GetUsersQuery, GetPaginatedUsersResponse>
     {
         private readonly IDbContextFactory<JsmContext> _dbContextFactory;
 
@@ -16,7 +15,7 @@ namespace JSM.Application.Queries.Users
             _dbContextFactory = dbContextFactory;
         }
 
-        public async Task<PaginatedResponse<GetUsersResponse>> Handle(GetUsersQuery request, CancellationToken cancellationToken)
+        public async Task<GetPaginatedUsersResponse> Handle(GetUsersQuery request, CancellationToken cancellationToken)
         {
             using var dbContext = await _dbContextFactory.CreateDbContextAsync(cancellationToken);
 
@@ -33,7 +32,7 @@ namespace JSM.Application.Queries.Users
 
             var totalItems = await usersQuery.CountAsync(cancellationToken);
 
-            return new PaginatedResponse<GetUsersResponse>(users, totalItems, request.Page.Value, request.Size.Value);
+            return new GetPaginatedUsersResponse(users, totalItems, request.Page.Value, request.Size.Value);
         }
 
         private static GetUsersResponse ConvertModelToResponse(User x)
