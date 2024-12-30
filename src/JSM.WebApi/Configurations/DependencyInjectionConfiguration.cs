@@ -10,6 +10,7 @@ namespace JSM.WebApi.Configurations
         {
             services.AddTransient<ICsvHelper, Application.Core.CsvHelper>();
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CommandValidationBehavior<,>));
+            services.AddScoped<INotificationHandler<Notification>, NotificationHandler>();
         }
     }
 }
