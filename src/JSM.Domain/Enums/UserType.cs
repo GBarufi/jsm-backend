@@ -1,6 +1,6 @@
 ﻿namespace JSM.Domain.Enums
 {
-    public enum CustomerType
+    public enum UserType
     {
         Special,
         Normal,

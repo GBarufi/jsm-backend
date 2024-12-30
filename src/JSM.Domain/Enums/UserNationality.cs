@@ -2,7 +2,7 @@
 
 namespace JSM.Domain.Enums
 {
-    public enum CustomerNationality
+    public enum UserNationality
     {
         [Display(Name = "Brazilian")]
         BR = 1

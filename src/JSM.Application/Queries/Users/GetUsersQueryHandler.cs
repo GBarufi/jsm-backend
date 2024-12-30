@@ -1,66 +1,66 @@
 ﻿using JSM.Application.Core;
-using JSM.Application.Dtos.Customers;
+using JSM.Application.Dtos.Users;
 using JSM.Domain.Models;
 using JSM.Persistence.Contexts;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace JSM.Application.Queries.Customers
+namespace JSM.Application.Queries.Users
 {
-    public class GetCustomersQueryHandler : IRequestHandler<GetCustomersQuery, PaginatedResponse<GetCustomersResponse>>
+    public class GetUsersQueryHandler : IRequestHandler<GetUsersQuery, PaginatedResponse<GetUsersResponse>>
     {
         private readonly IDbContextFactory<JsmContext> _dbContextFactory;
 
-        public GetCustomersQueryHandler(IDbContextFactory<JsmContext> dbContextFactory)
+        public GetUsersQueryHandler(IDbContextFactory<JsmContext> dbContextFactory)
         {
             _dbContextFactory = dbContextFactory;
         }
 
-        public async Task<PaginatedResponse<GetCustomersResponse>> Handle(GetCustomersQuery request, CancellationToken cancellationToken)
+        public async Task<PaginatedResponse<GetUsersResponse>> Handle(GetUsersQuery request, CancellationToken cancellationToken)
         {
             using var dbContext = await _dbContextFactory.CreateDbContextAsync(cancellationToken);
 
-            var customersQuery = dbContext.Customers
+            var usersQuery = dbContext.Users
                 .Include(x => x.Location)
                 .Include(x => x.Portrait)
                 .AsNoTracking();
 
-            var customers = await customersQuery
+            var users = await usersQuery
                 .Skip(request.Page!.Value * request.Size!.Value)
                 .Take(request.Size!.Value)
                 .Select(x => ConvertModelToResponse(x))
                 .ToListAsync(cancellationToken);
 
-            var totalItems = await customersQuery.CountAsync(cancellationToken);
+            var totalItems = await usersQuery.CountAsync(cancellationToken);
 
-            return new PaginatedResponse<GetCustomersResponse>(customers, totalItems, request.Page.Value, request.Size.Value);
+            return new PaginatedResponse<GetUsersResponse>(users, totalItems, request.Page.Value, request.Size.Value);
         }
 
-        private GetCustomersResponse ConvertModelToResponse(Customer x)
+        private static GetUsersResponse ConvertModelToResponse(User x)
         {
-            return new GetCustomersResponse
+            return new GetUsersResponse
             {
                 Type = x.Type.ToString().ToLower(),
                 Gender = x.Gender.ToString().ToLower(),
-                Name = new GetCustomersResponse.CustomerName
+                Name = new GetUsersResponse.UserName
                 {
                     Title = x.Title,
                     First = x.FirstName,
                     Last = x.LastName
                 },
-                Location = new GetCustomersResponse.CustomerLocation
+                Location = new GetUsersResponse.UserLocation
                 {
                     Region = x.Location!.Region.ToString().ToLower(),
                     Street = x.Location!.Street,
                     City = x.Location!.City,
                     State = x.Location!.State,
                     PostCode = x.Location!.PostCode,
-                    Coordinates = new GetCustomersResponse.CustomerLocationCoordinates
+                    Coordinates = new GetUsersResponse.UserLocationCoordinates
                     {
                         Latitude = x.Location!.Latitude,
                         Longitude = x.Location!.Longitude
                     },
-                    Timezone = new GetCustomersResponse.CustomerLocationTimezone
+                    Timezone = new GetUsersResponse.UserLocationTimezone
                     {
                         Offset = x.Location!.TimezoneOffset,
                         Description = x.Location!.TimezoneDescription
@@ -71,7 +71,7 @@ namespace JSM.Application.Queries.Customers
                 Registered = x.Registered.ToUniversalTime(),
                 TelephoneNumbers = x.TelephoneNumbers,
                 MobileNumbers = x.MobileNumbers,
-                Picture = new GetCustomersResponse.CustomerPicture
+                Picture = new GetUsersResponse.UserPicture
                 {
                     Large = x.Portrait!.Large,
                     Medium = x.Portrait!.Medium,

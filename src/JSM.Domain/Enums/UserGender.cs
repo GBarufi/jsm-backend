@@ -2,7 +2,7 @@
 
 namespace JSM.Domain.Enums
 {
-    public enum CustomerGender
+    public enum UserGender
     {
         [Display(Name = "Male")]
         M,

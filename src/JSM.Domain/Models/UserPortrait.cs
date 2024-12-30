@@ -2,16 +2,16 @@
 
 namespace JSM.Domain.Models
 {
-    public class CustomerPortrait : EntityBase
+    public class UserPortrait : EntityBase
     {
-        public int CustomerId { get; private set; }
+        public int UserId { get; private set; }
         public string Large { get; private set; } = string.Empty;
         public string Medium { get; private set; } = string.Empty;
         public string Thumbnail { get; private set; } = string.Empty;
 
-        private CustomerPortrait() { }
+        private UserPortrait() { }
 
-        public CustomerPortrait(string large, string medium, string thumbnail)
+        public UserPortrait(string large, string medium, string thumbnail)
         {
             Large = large;
             Medium = medium;

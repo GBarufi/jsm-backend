@@ -1,14 +1,14 @@
 ﻿using JSM.Domain.Enums;
 using JSM.Domain.Models.Base;
-using JSM.Domain.Strategies.Customer;
+using JSM.Domain.Strategies.User;
 using System.Globalization;
 
 namespace JSM.Domain.Models
 {
-    public class Customer : EntityBase
+    public class User : EntityBase
     {
-        public CustomerType Type { get; private set; }
-        public CustomerGender Gender { get; private set; }
+        public UserType Type { get; private set; }
+        public UserGender Gender { get; private set; }
         public string Title { get; private set; } = string.Empty;
         public string FirstName { get; private set; } = string.Empty;
         public string LastName { get; private set; } = string.Empty;
@@ -17,26 +17,26 @@ namespace JSM.Domain.Models
         public DateTime Registered { get; private set; }
         public string[] TelephoneNumbers { get; private set; } = [];
         public string[] MobileNumbers { get; private set; } = [];
-        public CustomerNationality Nationality { get; private set; }
+        public UserNationality Nationality { get; private set; }
 
-        public CustomerLocation? Location { get; private set; }
-        public CustomerPortrait? Portrait { get; private set; }
+        public UserLocation? Location { get; private set; }
+        public UserPortrait? Portrait { get; private set; }
 
-        private Customer() { }
+        private User() { }
 
-        public Customer(
-            CustomerGender gender, 
-            string title, 
-            string firstName, 
-            string lastName, 
-            string email, 
-            DateTime birthday, 
-            DateTime registered, 
-            string telephoneNumber, 
-            string mobileNumber, 
-            CustomerNationality nationality, 
-            CustomerLocation location, 
-            CustomerPortrait portrait)
+        public User(
+            UserGender gender,
+            string title,
+            string firstName,
+            string lastName,
+            string email,
+            DateTime birthday,
+            DateTime registered,
+            string telephoneNumber,
+            string mobileNumber,
+            UserNationality nationality,
+            UserLocation location,
+            UserPortrait portrait)
         {
             Type = GetTypeAccordingToCoordinates(location.Latitude, location.Longitude);
             Gender = gender;
@@ -53,24 +53,24 @@ namespace JSM.Domain.Models
             Portrait = portrait;
         }
 
-        private CustomerType GetTypeAccordingToCoordinates(string latitude, string longitude)
+        private static UserType GetTypeAccordingToCoordinates(string latitude, string longitude)
         {
-            var customerTypeStrategies = new List<ICustomerTypeStrategy> {
-                new SpecialCustomerStrategy(),
-                new HardCustomerStrategy(),
-                new NormalCustomerStrategy()
+            var userTypeStrategies = new List<IUserTypeStrategy> {
+                new SpecialUserStrategy(),
+                new HardUserStrategy(),
+                new NormalUserStrategy()
             };
 
-            foreach (var strategy in customerTypeStrategies)
+            foreach (var strategy in userTypeStrategies)
             {
                 var parsedLatitude = double.Parse(latitude, CultureInfo.InvariantCulture);
                 var parsedLongitude = double.Parse(longitude, CultureInfo.InvariantCulture);
 
-                if (strategy.CustomerBelongsToType(parsedLatitude, parsedLongitude))
+                if (strategy.UserBelongsToType(parsedLatitude, parsedLongitude))
                     return strategy.Type;
             }
 
-            return CustomerType.Laborious;
+            return UserType.Laborious;
         }
     }
 }

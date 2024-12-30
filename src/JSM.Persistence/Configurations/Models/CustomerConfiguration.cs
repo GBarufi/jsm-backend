@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace JSM.Persistence.Configurations.Models
 {
-    internal class Customerfiguration : BaseConfiguration<Customer>
+    internal class Userfiguration : BaseConfiguration<User>
     {
-        public override void Configure(EntityTypeBuilder<Customer> builder)
+        public override void Configure(EntityTypeBuilder<User> builder)
         {
             builder.Property(x => x.Type)
                 .IsRequired();
@@ -44,12 +44,12 @@ namespace JSM.Persistence.Configurations.Models
 
             builder.HasOne(x => x.Location)
                 .WithOne()
-                .HasForeignKey<CustomerLocation>(x => x.CustomerId)
+                .HasForeignKey<UserLocation>(x => x.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasOne(x => x.Portrait)
                 .WithOne()
-                .HasForeignKey<CustomerPortrait>(x => x.CustomerId)
+                .HasForeignKey<UserPortrait>(x => x.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
 
             base.Configure(builder);

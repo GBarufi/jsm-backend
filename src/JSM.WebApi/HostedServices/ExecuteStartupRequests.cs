@@ -1,4 +1,4 @@
-﻿using JSM.Application.Commands.Customers.CreateCustomer;
+﻿using JSM.Application.Commands.Users.CreateUser;
 using MediatR;
 using Newtonsoft.Json;
 
@@ -33,7 +33,7 @@ namespace JSM.WebApi.HostedServices
             var httpResponse = await client.GetAsync(requestUrl!, cancellationToken!);
             httpResponse.EnsureSuccessStatusCode();
 
-            var command = new CreateCustomerFromCsvCommand { Content = await httpResponse.Content.ReadAsByteArrayAsync(cancellationToken) };
+            var command = new CreateUsersFromCsvCommand { Content = await httpResponse.Content.ReadAsByteArrayAsync(cancellationToken) };
 
             await _mediator.Send(command, cancellationToken);
         }
@@ -49,10 +49,10 @@ namespace JSM.WebApi.HostedServices
             httpResponse.EnsureSuccessStatusCode();
 
             var jsonString = httpResponse.Content.ReadAsStringAsync(cancellationToken).Result;
-            var command = JsonConvert.DeserializeObject<CreateCustomersFromJsonCommand>(jsonString);
+            var command = JsonConvert.DeserializeObject<CreateUsersFromJsonCommand>(jsonString);
 
             if (command is null)
-                throw new ArgumentException(nameof(CreateCustomersFromJsonCommand));
+                throw new ArgumentException(nameof(CreateUsersFromJsonCommand));
 
             await _mediator.Send(command, cancellationToken);
         }

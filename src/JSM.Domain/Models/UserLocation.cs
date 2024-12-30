@@ -4,9 +4,9 @@ using JSM.Domain.Models.Base;
 
 namespace JSM.Domain.Models
 {
-    public class CustomerLocation : EntityBase
+    public class UserLocation : EntityBase
     {
-        public int CustomerId { get; private set; }
+        public int UserId { get; private set; }
         public LocationRegion Region { get; private set; }
         public string Street { get; private set; } = string.Empty;
         public string City { get; private set; } = string.Empty;
@@ -17,9 +17,9 @@ namespace JSM.Domain.Models
         public string TimezoneOffset { get; private set; } = string.Empty;
         public string TimezoneDescription { get; private set; } = string.Empty;
 
-        private CustomerLocation() { }
+        private UserLocation() { }
 
-        public CustomerLocation(
+        public UserLocation(
             string street,
             string city,
             string state,

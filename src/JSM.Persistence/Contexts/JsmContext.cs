@@ -5,9 +5,9 @@ namespace JSM.Persistence.Contexts
 {
     public class JsmContext(DbContextOptions options) : DbContext(options)
     {
-        public DbSet<Customer> Customers => Set<Customer>();
-        public DbSet<CustomerLocation> Locations => Set<CustomerLocation>();
-        public DbSet<CustomerPortrait> Portraits => Set<CustomerPortrait>();
+        public DbSet<User> Users => Set<User>();
+        public DbSet<UserLocation> Locations => Set<UserLocation>();
+        public DbSet<UserPortrait> Portraits => Set<UserPortrait>();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

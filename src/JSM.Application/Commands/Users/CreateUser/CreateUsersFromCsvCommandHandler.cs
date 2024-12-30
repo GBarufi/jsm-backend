@@ -1,7 +1,7 @@
 ﻿using JSM.Application.Core.Interfaces;
 using JSM.Application.Core.Utils;
-using JSM.Application.Dtos.Customers;
-using JSM.Application.Mappers.Customers;
+using JSM.Application.Dtos.Users;
+using JSM.Application.Mappers.Users;
 using JSM.Domain.Enums;
 using JSM.Domain.Extensions;
 using JSM.Domain.Models;
@@ -9,28 +9,28 @@ using JSM.Persistence.Contexts;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace JSM.Application.Commands.Customers.CreateCustomer
+namespace JSM.Application.Commands.Users.CreateUser
 {
-    public class CreateCustomerFromCsvCommandHandler : IRequestHandler<CreateCustomerFromCsvCommand, int>
+    public class CreateUsersFromCsvCommandHandler : IRequestHandler<CreateUsersFromCsvCommand, int>
     {
         private readonly IDbContextFactory<JsmContext> _dbContextFactory;
         private readonly ICsvHelper _csvHelper;
 
-        public CreateCustomerFromCsvCommandHandler(IDbContextFactory<JsmContext> dbContextFactory, ICsvHelper csvHelper)
+        public CreateUsersFromCsvCommandHandler(IDbContextFactory<JsmContext> dbContextFactory, ICsvHelper csvHelper)
         {
             _dbContextFactory = dbContextFactory;
             _csvHelper = csvHelper;
         }
 
-        public async Task<int> Handle(CreateCustomerFromCsvCommand request, CancellationToken cancellationToken)
+        public async Task<int> Handle(CreateUsersFromCsvCommand request, CancellationToken cancellationToken)
         {
             using var dbContext = await _dbContextFactory.CreateDbContextAsync(cancellationToken);
-            var csvData = _csvHelper.ImportCsv<CustomerDto, CustomerCsvMapper>(request.Content!).ToList();
+            var csvData = _csvHelper.ImportCsv<UserDto, UserCsvMapper>(request.Content!).ToList();
 
             foreach (var csvRow in csvData)
             {
-                var newCustomer = new Customer(
-                    csvRow.Gender!.GetEnumValueFromDisplayName<CustomerGender>(),
+                var newUser = new User(
+                    csvRow.Gender!.GetEnumValueFromDisplayName<UserGender>(),
                     csvRow.Name.Title,
                     csvRow.Name.First,
                     csvRow.Name.Last,
@@ -39,8 +39,8 @@ namespace JSM.Application.Commands.Customers.CreateCustomer
                     (DateTime)csvRow.Registered.Date,
                     PhoneUtils.ConvertToE164(csvRow.Phone),
                     PhoneUtils.ConvertToE164(csvRow.Cell),
-                    CustomerNationality.BR,
-                    new CustomerLocation(
+                    UserNationality.BR,
+                    new UserLocation(
                         csvRow.Location.Street,
                         csvRow.Location.City,
                         csvRow.Location.State,
@@ -50,14 +50,14 @@ namespace JSM.Application.Commands.Customers.CreateCustomer
                         csvRow.Location.Timezone.Offset,
                         csvRow.Location.Timezone.Description
                     ),
-                    new CustomerPortrait(
+                    new UserPortrait(
                         csvRow.Picture.Large,
                         csvRow.Picture.Medium,
                         csvRow.Picture.Thumbnail
                     )
                 );
 
-                await dbContext.Customers.AddAsync(newCustomer, cancellationToken);
+                await dbContext.Users.AddAsync(newUser, cancellationToken);
             }
 
             await dbContext.SaveChangesAsync(cancellationToken);

@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace JSM.Persistence.Configurations.Models
 {
-    internal class CustomerPortraitConfiguration : BaseConfiguration<CustomerPortrait>
+    internal class UserPortraitConfiguration : BaseConfiguration<UserPortrait>
     {
-        public override void Configure(EntityTypeBuilder<CustomerPortrait> builder)
+        public override void Configure(EntityTypeBuilder<UserPortrait> builder)
         {
-            builder.Property(x => x.CustomerId)
+            builder.Property(x => x.UserId)
                 .IsRequired();
 
             builder.Property(x => x.Large)

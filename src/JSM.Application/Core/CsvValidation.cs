@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 using JSM.Application.Core.Interfaces;
-using JSM.Application.Dtos.Customers;
+using JSM.Application.Dtos.Users;
 
 namespace JSM.Application.Core
 {
@@ -13,7 +13,7 @@ namespace JSM.Application.Core
                 .Cascade(CascadeMode.Stop)
                 .NotNull()
                 .NotEmpty()
-                .Must(content => csvHelper.ValidateCsv<CustomerDto>(content!, ExpectedFields));
+                .Must(content => csvHelper.ValidateCsv<UserDto>(content!, ExpectedFields));
         }
     }
 }

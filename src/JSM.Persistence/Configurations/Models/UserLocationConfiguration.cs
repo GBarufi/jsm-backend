@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace JSM.Persistence.Configurations.Models
 {
-    internal class CustomerLocationConfiguration : BaseConfiguration<CustomerLocation>
+    internal class UserLocationConfiguration : BaseConfiguration<UserLocation>
     {
-        public override void Configure(EntityTypeBuilder<CustomerLocation> builder)
+        public override void Configure(EntityTypeBuilder<UserLocation> builder)
         {
-            builder.Property(x => x.CustomerId)
+            builder.Property(x => x.UserId)
                 .IsRequired();
 
             builder.Property(x => x.Region)

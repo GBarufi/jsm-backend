@@ -1,9 +1,9 @@
 ﻿using JSM.Application.Core;
 using JSM.Application.Core.Interfaces;
 
-namespace JSM.Application.Commands.Customers.CreateCustomer
+namespace JSM.Application.Commands.Users.CreateUser
 {
-    public class CreateCustomerFromCsvCommandValidation(ICsvHelper csvHelper) : CsvValidation<CreateCustomerFromCsvCommand>(csvHelper)
+    public class CreateUsersFromCsvCommandValidation(ICsvHelper csvHelper) : CsvValidation<CreateUsersFromCsvCommand>(csvHelper)
     {
         public override string[] ExpectedFields => [
             "gender",

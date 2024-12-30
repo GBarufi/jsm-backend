@@ -1,11 +1,11 @@
 ﻿using CsvHelper.Configuration;
-using JSM.Application.Dtos.Customers;
+using JSM.Application.Dtos.Users;
 
-namespace JSM.Application.Mappers.Customers
+namespace JSM.Application.Mappers.Users
 {
-    public class CustomerCsvMapper : ClassMap<CustomerDto>
+    public class UserCsvMapper : ClassMap<UserDto>
     {
-        public CustomerCsvMapper()
+        public UserCsvMapper()
         {
             Map(x => x.Gender).Index(0);
             Map(x => x.Name!.Title).Index(1);

@@ -1,27 +1,27 @@
-﻿namespace JSM.Application.Dtos.Customers
+﻿namespace JSM.Application.Dtos.Users
 {
-    public record CustomerDto
+    public record UserDto
     {
         /// <example>female</example>
         public string? Gender { get; init; }
-        public CustomerName Name { get; init; } = new();
-        public CustomerLocation Location { get; init; } = new();
+        public UserName Name { get; init; } = new();
+        public UserLocation Location { get; init; } = new();
         public string? Email { get; init; }
-        public CustomerDate Dob { get; init; } = new();
-        public CustomerDate Registered { get; init; } = new();
+        public UserDate Dob { get; init; } = new();
+        public UserDate Registered { get; init; } = new();
         public string? Phone { get; init; }
         public string? Cell { get; init; }
 
-        public CustomerPicture Picture { get; init; } = new();
+        public UserPicture Picture { get; init; } = new();
 
-        public record CustomerName
+        public record UserName
         {
             public string? Title { get; init; }
             public string? First { get; init; }
             public string? Last { get; init; }
         }
 
-        public record CustomerLocation
+        public record UserLocation
         {
             /// <example>1771 Rua Rui Barbosa</example>
             public string? Street { get; init; }
@@ -35,11 +35,11 @@
             /// <example>37787</example>
             public string? PostCode { get; init; }
 
-            public CustomerLocationCoordinates Coordinates { get; init; } = new();
-            public CustomerLocationTimezone Timezone { get; init; } = new();
+            public UserLocationCoordinates Coordinates { get; init; } = new();
+            public UserLocationTimezone Timezone { get; init; } = new();
         }
 
-        public record CustomerLocationCoordinates
+        public record UserLocationCoordinates
         {
             /// <example>-81.4170</example>
             public string? Latitude { get; init; }
@@ -48,20 +48,20 @@
             public string? Longitude { get; init; }
         }
 
-        public record CustomerLocationTimezone
+        public record UserLocationTimezone
         {
             /// <example>-2:00</example>
             public string? Offset { get; init; }
             public string? Description { get; init; }
         }
 
-        public record CustomerDate
+        public record UserDate
         {
             public DateTime? Date { get; init; }
             public int? Age { get; init; }
         }
 
-        public record CustomerPicture
+        public record UserPicture
         {
             /// <example>https://randomuser.me/api/portraits/women/18.jpg</example>
             public string? Large { get; init; }
