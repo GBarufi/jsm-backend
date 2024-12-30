@@ -4,7 +4,7 @@ namespace JSM.Application.Core.Utils
 {
     public static class AssemblyUtils
     {
-        public static Assembly GetAssembly()
+        public static Assembly GetApplicationProjectAssembly()
         {
             return Assembly.GetExecutingAssembly();
         }

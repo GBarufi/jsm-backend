@@ -8,7 +8,7 @@ namespace JSM.WebApi.Configurations
         {
             services.AddSwaggerGen(options =>
             {
-                var applicationAssembly = AssemblyUtils.GetAssembly();
+                var applicationAssembly = AssemblyUtils.GetApplicationProjectAssembly();
                 var xmlFilename = $"{applicationAssembly.GetName().Name}.xml";
                 options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
             });

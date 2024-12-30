@@ -6,7 +6,7 @@ namespace JSM.WebApi.Configurations
     {
         public static void ConfigureMediator(this IServiceCollection services)
         {
-            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(AssemblyUtils.GetAssembly()));
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(AssemblyUtils.GetApplicationProjectAssembly()));
         }
     }
 }
