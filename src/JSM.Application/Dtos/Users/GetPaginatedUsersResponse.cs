@@ -12,7 +12,7 @@ namespace JSM.Application.Dtos.Users
 
         public List<GetUsersResponse>? Users { get; private set; }
 
-        public override void SetData(List<GetUsersResponse>? data)
+        public override void SetDataToNamedProperty(List<GetUsersResponse>? data)
         {
             Users = data;
         }

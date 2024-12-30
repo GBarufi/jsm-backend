@@ -16,7 +16,7 @@ namespace JSM.Application.Core
         [JsonPropertyOrder(-1)]
         public int TotalPages { get; init; }
 
-        public abstract void SetData(List<T>? data);
+        public abstract void SetDataToNamedProperty(List<T>? data);
 
         public PaginatedResponse() { }
 
@@ -26,7 +26,7 @@ namespace JSM.Application.Core
             PageSize = data?.Count ?? 0;
             TotalCount = totalItems;
             TotalPages = (int)Math.Ceiling((double)totalItems / pageSize);
-            SetData(data);
+            SetDataToNamedProperty(data);
         }
     }
 }
