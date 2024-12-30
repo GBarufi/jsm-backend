@@ -18,6 +18,12 @@ namespace JSM.Application.Queries.Users
                 RuleFor(x => x.State)
                     .Must(x => BeIncludedInEnumDescriptions<LocationState>(x!));
             });
+
+            When(x => !string.IsNullOrEmpty(x.Type), () =>
+            {
+                RuleFor(x => x.Type)
+                    .Must(x => BeIncludedInEnumDescriptions<UserType>(x!));
+            });
         }
 
         private static bool BeIncludedInEnumDescriptions<T>(string value) where T : struct, Enum

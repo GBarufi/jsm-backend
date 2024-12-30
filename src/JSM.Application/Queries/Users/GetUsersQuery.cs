@@ -9,6 +9,7 @@ namespace JSM.Application.Queries.Users
         public string? Region { get; init; } = string.Empty;
         public string? State { get; init; } = string.Empty;
         public string? City { get; init; } = string.Empty;
+        public string? Type { get; init; } = string.Empty;
 
         public override bool IsValid()
         {

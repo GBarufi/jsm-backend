@@ -53,6 +53,9 @@ namespace JSM.Application.Queries.Users
 
             query = query.WhereIf(!string.IsNullOrEmpty(request.City), x =>
                 x.Location!.City.Contains(request.City!, StringComparison.CurrentCultureIgnoreCase));
+
+            query = query.WhereIf(!string.IsNullOrEmpty(request.Type), x =>
+                x.Type == (UserType)Enum.Parse(typeof(UserType), request.Type!, true));
         }
 
         private static GetUsersResponse ConvertModelToResponse(User x)
