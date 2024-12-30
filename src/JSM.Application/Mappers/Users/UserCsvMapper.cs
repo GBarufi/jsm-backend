@@ -3,7 +3,7 @@ using JSM.Application.Dtos.Users;
 
 namespace JSM.Application.Mappers.Users
 {
-    public class UserCsvMapper : ClassMap<UserDto>
+    public class UserCsvMapper : ClassMap<UserInputDto>
     {
         public UserCsvMapper()
         {

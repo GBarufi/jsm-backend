@@ -25,7 +25,7 @@ namespace JSM.Application.Commands.Users.CreateUser
         public async Task<int> Handle(CreateUsersFromCsvCommand request, CancellationToken cancellationToken)
         {
             using var dbContext = await _dbContextFactory.CreateDbContextAsync(cancellationToken);
-            var csvData = _csvHelper.ImportCsv<UserDto, UserCsvMapper>(request.Content!).ToList();
+            var csvData = _csvHelper.ImportCsv<UserInputDto, UserCsvMapper>(request.Content!).ToList();
 
             foreach (var csvRow in csvData)
             {

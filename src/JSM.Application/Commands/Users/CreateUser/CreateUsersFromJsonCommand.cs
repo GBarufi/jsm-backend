@@ -7,7 +7,7 @@ namespace JSM.Application.Commands.Users.CreateUser
     public record CreateUsersFromJsonCommand : RequestBase<int>
     {
         [JsonProperty("Results")]
-        public List<UserDto>? UsersList { get; init; }
+        public List<UserInputDto>? UsersList { get; init; }
 
         public override bool IsValid()
         {
