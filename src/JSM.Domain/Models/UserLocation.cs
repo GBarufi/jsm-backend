@@ -40,7 +40,7 @@ namespace JSM.Domain.Models
             TimezoneDescription = timezoneDescription;
         }
 
-        private Dictionary<LocationState, LocationRegion> StateRegions = new Dictionary<LocationState, LocationRegion>
+        private readonly Dictionary<LocationState, LocationRegion> StateRegions = new()
         {
             { LocationState.RS, LocationRegion.South },
             { LocationState.SC, LocationRegion.South },
