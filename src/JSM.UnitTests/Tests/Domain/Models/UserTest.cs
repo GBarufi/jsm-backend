@@ -56,10 +56,10 @@ namespace JSM.UnitTests.Tests.Domain.Models
             var longitude = "-34.0164";
 
             // Act
-            var laboriousUser = GenerateUserWithPredefinedCoordinates(latitude, longitude);
+            var normalTypeUser = GenerateUserWithPredefinedCoordinates(latitude, longitude);
 
             // Assert
-            Assert.Equal(UserType.Normal, laboriousUser.Type);
+            Assert.Equal(UserType.Normal, normalTypeUser.Type);
         }
 
         [Fact]
@@ -70,10 +70,10 @@ namespace JSM.UnitTests.Tests.Domain.Models
             var longitude = "-23.9664";
 
             // Act
-            var laboriousUser = GenerateUserWithPredefinedCoordinates(latitude, longitude);
+            var hardTypeUser = GenerateUserWithPredefinedCoordinates(latitude, longitude);
 
             // Assert
-            Assert.Equal(UserType.Hard, laboriousUser.Type);
+            Assert.Equal(UserType.Hard, hardTypeUser.Type);
         }
 
         [Fact]
@@ -84,10 +84,10 @@ namespace JSM.UnitTests.Tests.Domain.Models
             var longitude = "-15.4115";
 
             // Act
-            var laboriousUser = GenerateUserWithPredefinedCoordinates(latitude, longitude);
+            var specialTypeUser = GenerateUserWithPredefinedCoordinates(latitude, longitude);
 
             // Assert
-            Assert.Equal(UserType.Special, laboriousUser.Type);
+            Assert.Equal(UserType.Special, specialTypeUser.Type);
         }
 
         [Fact]
@@ -98,10 +98,10 @@ namespace JSM.UnitTests.Tests.Domain.Models
             var longitude = "-57.4496";
 
             // Act
-            var laboriousUser = GenerateUserWithPredefinedCoordinates(latitude, longitude);
+            var laboriousTypeUser = GenerateUserWithPredefinedCoordinates(latitude, longitude);
 
             // Assert
-            Assert.Equal(UserType.Laborious, laboriousUser.Type);
+            Assert.Equal(UserType.Laborious, laboriousTypeUser.Type);
         }
 
         internal static User GenerateUserWithPredefinedCoordinates(string latitude, string longitude)
