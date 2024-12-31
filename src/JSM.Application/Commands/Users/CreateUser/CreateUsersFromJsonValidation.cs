@@ -8,10 +8,12 @@ namespace JSM.Application.Commands.Users.CreateUser
     {
         public CreateUsersFromJsonValidation()
         {
-            RuleForEach(x => x.UsersList)
+            RuleFor(x => x.UsersList)
                 .Cascade(CascadeMode.Stop)
                 .NotNull()
-                .NotEmpty()
+                .NotEmpty();
+
+            RuleForEach(x => x.UsersList)
                 .ChildRules(user =>
                 {
                     user.RuleFor(x => x.Gender).NotEmpty().Must(x => BeIncludedInEnumDisplayNames<UserGender>(x!));
@@ -54,6 +56,9 @@ namespace JSM.Application.Commands.Users.CreateUser
 
         private static bool BeIncludedInEnumDisplayNames<T>(string value) where T : struct, Enum
         {
+            if (value is null)
+                return false;
+
             return Enum.GetValues<T>()
                 .Select(x => x.GetDisplayName().ToLower()).ToList()
                 .Contains(value.ToLower());
