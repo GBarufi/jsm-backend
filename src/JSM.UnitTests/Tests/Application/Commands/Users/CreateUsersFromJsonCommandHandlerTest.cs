@@ -1,10 +1,10 @@
 ﻿using JSM.Application.Commands.Users.CreateUser;
 using JSM.Persistence.Contexts;
-using JSM.UnitTests.Configurations;
+using JSM.UnitTests.Helpers;
 using Microsoft.EntityFrameworkCore;
 using Moq;
 
-namespace JSM.UnitTests.Application.Commands.Users
+namespace JSM.UnitTests.Tests.Application.Commands.Users
 {
     public class CreateUsersFromJsonCommandHandlerTest
     {

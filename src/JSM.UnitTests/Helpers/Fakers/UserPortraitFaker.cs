@@ -2,7 +2,7 @@
 using JSM.Domain.Enums;
 using JSM.Domain.Models;
 
-namespace JSM.UnitTests.Domain.Fakers
+namespace JSM.UnitTests.Helpers.Fakers
 {
     public class UserPortraitFaker
     {

@@ -1,9 +1,9 @@
 ﻿using JSM.Application.Commands.Users.CreateUser;
 using JSM.Domain.Extensions;
-using JSM.UnitTests.Domain.Fakers;
+using JSM.UnitTests.Helpers.Fakers;
 using static JSM.Application.Dtos.Users.UserInputDto;
 
-namespace JSM.UnitTests.Application.Commands.Users
+namespace JSM.UnitTests.Tests.Application.Commands.Users
 {
     public class CreateUsersFromJsonCommandTest
     {

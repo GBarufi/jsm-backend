@@ -1,7 +1,7 @@
 ﻿using JSM.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
 
-namespace JSM.UnitTests.Configurations
+namespace JSM.UnitTests.Helpers
 {
     public static class JsmContextFactory
     {

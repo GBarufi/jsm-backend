@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Moq;
 
-namespace JSM.UnitTests.WebApi.Controllers
+namespace JSM.UnitTests.Tests.WebApi.Controllers
 {
     public class UsersControllerTest
     {
