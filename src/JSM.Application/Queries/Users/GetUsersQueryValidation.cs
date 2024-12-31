@@ -7,6 +7,8 @@ namespace JSM.Application.Queries.Users
     {
         public GetUsersQueryValidation()
         {
+            RuleFor(x => x.Size).GreaterThan(0);
+
             When(x => !string.IsNullOrEmpty(x.Region), () =>
             {
                 RuleFor(x => x.Region)

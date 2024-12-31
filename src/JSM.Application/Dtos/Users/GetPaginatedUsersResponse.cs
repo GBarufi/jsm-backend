@@ -4,6 +4,8 @@ namespace JSM.Application.Dtos.Users
 {
     public class GetPaginatedUsersResponse : PaginatedResponse<GetUsersResponse>
     {
+        public GetPaginatedUsersResponse() : base() { }
+
         public GetPaginatedUsersResponse(
             List<GetUsersResponse>? data,
             int totalItems,

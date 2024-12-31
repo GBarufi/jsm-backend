@@ -16,7 +16,7 @@ namespace JSM.UnitTests.Tests.Application.Commands.Users
 
             _dbContextFactoryMock
                 .Setup(x => x.CreateDbContextAsync(It.IsAny<CancellationToken>()))
-                .ReturnsAsync(JsmContextFactory.CreateInMemory);
+                .ReturnsAsync(() => JsmContextFactory.CreateInMemory());
 
             _handler = new CreateUsersFromJsonCommandHandler(_dbContextFactoryMock.Object);
         }
