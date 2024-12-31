@@ -28,17 +28,37 @@ namespace JSM.UnitTests.Tests.WebApi.Controllers
         public async Task GetUsersList_Ok()
         {
             // Arrange
-            var command = new GetUsersQuery();
+            var query = new GetUsersQuery();
 
             _mediatorMock.Setup(mediator => mediator.Send(It.IsAny<GetUsersQuery>(), It.IsAny<CancellationToken>()))
                 .ReturnsAsync(new GetPaginatedUsersResponse());
 
             // Act
-            var response = await _controller.GetUsersList(command);
+            var response = await _controller.GetUsersList(query);
 
             // Assert
             Assert.NotNull(response);
             Assert.IsType<OkObjectResult>(response);
+        }
+
+        [Fact]
+        public async Task GetUsersList_NotOk()
+        {
+            // Arrange
+            var query = new GetUsersQuery();
+
+            await _notificationHandler.Handle(
+                new Notification(NotificationKey.Request, "Invalid request"), new CancellationToken());
+
+            _mediatorMock.Setup(mediator => mediator.Send(It.IsAny<GetUsersQuery>(), It.IsAny<CancellationToken>()))
+                .ReturnsAsync(new GetPaginatedUsersResponse());
+
+            // Act
+            var response = await _controller.GetUsersList(query);
+
+            // Assert
+            Assert.NotNull(response);
+            Assert.IsType<BadRequestObjectResult>(response);
         }
 
         [Fact]

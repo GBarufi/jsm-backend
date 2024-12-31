@@ -10,7 +10,7 @@ namespace JSM.UnitTests.Helpers.Fakers
         {
             var faker = new Faker();
             var baseStr = "https://randomuser.me/api/portraits";
-            var genderStr = gender == UserGender.F ? "woman" : "men";
+            var genderStr = gender == UserGender.F ? "woman" : "man";
             var portraitCode = faker.Random.Int(1, 100);
 
             return new UserPortrait(
