@@ -32,25 +32,25 @@ namespace JSM.UnitTests.Tests.Application.Queries.Users
                 {
                     if (!dbContext.Users.Any())
                     {
-                        var userWithPredefinedName = GenerateFakeModelWithPredefinedProperties(
+                        var userWithPredefinedName = GenerateUserWithPredefinedProperties(
                             name: _userNameToFilter,
                             region: _regionDifferentFromFilter,
                             state: _stateDifferentFromFilter,
                             city: _cityDifferentFromFilter);
 
-                        var userWithPredefinedRegion = GenerateFakeModelWithPredefinedProperties(
+                        var userWithPredefinedRegion = GenerateUserWithPredefinedProperties(
                             name: _userNameDifferentFromFilter,
                             region: _regionToFilter,
                             state: _stateDifferentFromFilter,
                             city: _cityDifferentFromFilter);
 
-                        var userWithPredefinedState = GenerateFakeModelWithPredefinedProperties(
+                        var userWithPredefinedState = GenerateUserWithPredefinedProperties(
                             name: _userNameDifferentFromFilter,
                             region: _regionDifferentFromFilter,
                             state: _stateToFilter,
                             city: _cityDifferentFromFilter);
 
-                        var userWithPredefinedCity = GenerateFakeModelWithPredefinedProperties(
+                        var userWithPredefinedCity = GenerateUserWithPredefinedProperties(
                             name: _userNameDifferentFromFilter,
                             region: _regionDifferentFromFilter,
                             state: _stateDifferentFromFilter,
@@ -142,7 +142,7 @@ namespace JSM.UnitTests.Tests.Application.Queries.Users
             Assert.Equal(0, response.Users!.Count(x => !x.Type.Equals(typeToFilter, StringComparison.CurrentCultureIgnoreCase)));
         }
 
-        internal static User GenerateFakeModelWithPredefinedProperties(
+        internal static User GenerateUserWithPredefinedProperties(
             string? name = null,
             string? region = null,
             string? state = null,
