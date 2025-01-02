@@ -1,11 +1,17 @@
+using JSM.WebApi.Configurations;
+using JSM.WebApi.HostedServices;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.ConfigureSwagger();
+builder.Services.ConfigureMediator();
+builder.Services.ConfigureDependencyInjection();
+builder.Services.AddRouting(options => options.LowercaseUrls = true);
+builder.Services.ConfigureInMemoryDatabase(builder.Configuration);
+builder.Services.AddHostedService<ExecuteStartupRequests>();
 
 var app = builder.Build();
 
@@ -16,10 +22,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();
