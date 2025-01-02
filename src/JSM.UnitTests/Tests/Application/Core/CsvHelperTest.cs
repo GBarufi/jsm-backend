@@ -39,16 +39,30 @@ namespace JSM.UnitTests.Tests.Application.Core
         ];
 
         [Fact]
-        public void ValidateCsv_WhenCsvColumnsMatchToExpectedFields_ShouldReturnTrue()
+        public void ImportCsv_WhenUserDataWasInformedCorrectly_ShouldReturnDataList()
         {
             // Arrange
             var byteArray = GenerateUserInputDtoAsByteArray();
 
             // Arrange
-            var result = _csvHelper.ValidateCsv<UserInputDto>(byteArray, _expectedFields);
+            var result = _csvHelper.ImportCsv<UserInputDto, UserCsvMapper>(byteArray);
 
             // Assert
-            Assert.True(result);
+            Assert.NotNull(result);
+            Assert.NotEmpty(result);
+        }
+
+        [Fact]
+        public void ImportCsv_WhenUserDataWasNotInformedCorrectly_ShouldThrowsException()
+        {
+            // Arrange
+            var byteArray = GenerateUserInputDtoAsByteArray(missingProperty: true);
+
+            // Arrange
+            void importCsv() => _csvHelper.ImportCsv<UserInputDto, UserCsvMapper>(byteArray);
+
+            // Assert
+            Assert.Throws<HeaderValidationException>(importCsv);
         }
 
         [Fact]
