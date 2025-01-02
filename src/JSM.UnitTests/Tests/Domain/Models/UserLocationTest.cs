@@ -100,7 +100,7 @@ namespace JSM.UnitTests.Tests.Domain.Models
             Assert.Equal(LocationRegion.North, northRegionLocation.Region);
         }
 
-        internal static UserLocation GenerateLocationWithPredefinedState(string state)
+        private static UserLocation GenerateLocationWithPredefinedState(string state)
         {
             var model = UserLocationFaker.Generate();
 

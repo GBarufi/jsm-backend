@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace JSM.Persistence.Configurations.Models
 {
-    internal class Userfiguration : BaseConfiguration<User>
+    internal class UserConfiguration : BaseConfiguration<User>
     {
         public override void Configure(EntityTypeBuilder<User> builder)
         {

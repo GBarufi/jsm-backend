@@ -16,7 +16,7 @@ namespace JSM.UnitTests.Helpers.Fakers
             return new UserPortrait(
                 $"{baseStr}/{genderStr}/large/{portraitCode}",
                 $"{baseStr}/{genderStr}/medium/{portraitCode}",
-                $"{baseStr}/{genderStr}/thumnail/{portraitCode}"
+                $"{baseStr}/{genderStr}/thumbnail/{portraitCode}"
             );
         }
     }

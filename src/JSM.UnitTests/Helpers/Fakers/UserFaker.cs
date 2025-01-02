@@ -13,7 +13,7 @@ namespace JSM.UnitTests.Helpers.Fakers
 
             return new User(
                 userGender,
-                faker.PickRandom("Mr", "Mrs", "Miss"),
+                userGender == UserGender.F ? "Miss" : faker.PickRandom("Mr", "Mrs"),
                 faker.Person.FirstName,
                 faker.Person.LastName,
                 faker.Person.Email,

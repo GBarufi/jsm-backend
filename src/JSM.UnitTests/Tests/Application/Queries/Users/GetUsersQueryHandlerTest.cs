@@ -142,7 +142,7 @@ namespace JSM.UnitTests.Tests.Application.Queries.Users
             Assert.Equal(0, response.Users!.Count(x => !x.Type.Equals(typeToFilter, StringComparison.CurrentCultureIgnoreCase)));
         }
 
-        internal static User GenerateUserWithPredefinedProperties(
+        private static User GenerateUserWithPredefinedProperties(
             string? name = null,
             string? region = null,
             string? state = null,

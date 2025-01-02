@@ -104,7 +104,7 @@ namespace JSM.UnitTests.Tests.Domain.Models
             Assert.Equal(UserType.Laborious, laboriousTypeUser.Type);
         }
 
-        internal static User GenerateUserWithPredefinedCoordinates(string latitude, string longitude)
+        private static User GenerateUserWithPredefinedCoordinates(string latitude, string longitude)
         {
             var model = UserFaker.Generate();
 

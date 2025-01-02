@@ -1,16 +1,16 @@
 ﻿using CsvHelper.Configuration;
 using JSM.Application.Dtos.Users;
 
-namespace JSM.Application.Mappers.Users
+namespace JSM.UnitTests.Helpers.Mappers
 {
-    public class UserCsvMapper : ClassMap<UserInputDto>
+    internal class UserCsvMapperWithWrongOrder : ClassMap<UserInputDto>
     {
-        public UserCsvMapper()
+        private UserCsvMapperWithWrongOrder()
         {
-            Map(x => x.Gender).Index(0).Name("gender");
-            Map(x => x.Name!.Title).Index(1).Name("name__title");
-            Map(x => x.Name!.First).Index(2).Name("name__first");
-            Map(x => x.Name!.Last).Index(3).Name("name__last");
+            Map(x => x.Name!.Title).Index(0).Name("name__title");
+            Map(x => x.Name!.First).Index(1).Name("name__first");
+            Map(x => x.Name!.Last).Index(2).Name("name__last");
+            Map(x => x.Gender).Index(3).Name("gender");
             Map(x => x.Location!.Street).Index(4).Name("location__street");
             Map(x => x.Location!.City).Index(5).Name("location__city");
             Map(x => x.Location!.State).Index(6).Name("location__state");

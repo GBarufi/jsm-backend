@@ -40,20 +40,27 @@ namespace JSM.Application.Core
                 var csvConfiguration = new CsvConfiguration(CultureInfo.InvariantCulture);
                 using var csv = new CsvReader(reader, csvConfiguration);
 
-                var a = csv.Read();
-                var b = csv.ReadHeader();
+                csv.Read();
+                csv.ReadHeader();
 
                 if (expectedFields.Length != csv.ColumnCount)
                     isValid = false;
 
                 while (isValid && csv.Read())
                 {
-                    foreach (var expectedField in expectedFields.Select((value, i) => new { i, value }))
+                    foreach (var expectedField in expectedFields.Select((propertyName, index) => new { index, propertyName }))
                     {
-                        var fieldIndex = csv.GetFieldIndex(expectedField.value);
-
-                        if (fieldIndex != expectedField.i)
+                        if (csv.GetFieldIndex(expectedField.propertyName) != expectedField.index)
+                        {
                             isValid = false;
+                            break;
+                        }
+
+                        if (string.IsNullOrEmpty(csv.GetField(expectedField.index)))
+                        {
+                            isValid = false;
+                            break;
+                        }
                     }
                 }
 
