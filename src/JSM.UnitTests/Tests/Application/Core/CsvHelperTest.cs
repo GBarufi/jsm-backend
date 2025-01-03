@@ -3,8 +3,8 @@ using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
 using JSM.Application.Dtos.Users;
 using JSM.Application.Mappers.Users;
+using JSM.UnitTests.Helpers;
 using JSM.UnitTests.Helpers.Mappers;
-using JSM.UnitTests.Tests.Application.Commands.Users;
 using System.Globalization;
 using CSVHelper = JSM.Application.Core.CsvHelper;
 
@@ -123,7 +123,26 @@ namespace JSM.UnitTests.Tests.Application.Core
             bool wrongHeader = false,
             bool wrongPropertiesOrder = false)
         {
-            var dto = CreateUsersFromCsvCommandTest.GenerateUserInputDto(missingProperty, missingValue);
+            UserInputDto dto;
+
+            if (missingProperty)
+            {
+                dto = new UserInputDto { 
+                    Gender = string.Empty 
+                }.PopulateEmptyValuesWithFakeData();
+            }
+            else if (missingValue)
+            {
+                #pragma warning disable CS8625
+                dto = new UserInputDto { 
+                    Name = null 
+                }.PopulateEmptyValuesWithFakeData();
+                #pragma warning restore CS8625
+            }
+            else
+            {
+                dto = new UserInputDto().PopulateEmptyValuesWithFakeData();
+            }
 
             try
             {
