@@ -1,6 +1,7 @@
 # Code Challenge JSM
 Projeto referente ao Code Challenge da Juntos Somos Mais.<br/>
-Por se tratar de um protótipo, este projeto faz uso de uma *In-Memory Database* e não implementa nenhum tipo de autenticação ou autorização, portanto não são necessárias configurações prévias. Basta clonar a aplicação e executá-la.
+Por se tratar de um protótipo, este projeto faz uso de uma *In-Memory Database* e não implementa nenhum tipo de autenticação ou autorização, portanto não são necessárias configurações prévias. <br/>
+Basta clonar a aplicação e executá-la.
 <br/>
 <br/>
 
