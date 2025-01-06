@@ -17,10 +17,10 @@ namespace JSM.UnitTests.Tests.Application.Queries.Users
         private readonly string _userNameDifferentFromFilter = "José";
         private readonly string _regionToFilter = "South";
         private readonly string _regionDifferentFromFilter = "North";
-        private readonly string _stateToFilter = "RS";
+        private readonly string _stateToFilter = "SC";
         private readonly string _stateDifferentFromFilter = "SP";
-        private readonly string _cityToFilter = "Torres";
-        private readonly string _cityDifferentFromFilter = "Criciúma";
+        private readonly string _cityToFilter = "Criciúma";
+        private readonly string _cityDifferentFromFilter = "São Paulo";
 
         public GetUsersQueryHandlerTest()
         {

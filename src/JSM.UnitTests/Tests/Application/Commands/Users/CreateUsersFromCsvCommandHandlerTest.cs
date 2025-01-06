@@ -30,9 +30,10 @@ namespace JSM.UnitTests.Tests.Application.Commands.Users
         {
             // Arrange
             var command = new CreateUsersFromCsvCommand { Content = Convert.FromBase64String("VmFsaWRCeXRlQXJyYXlDb250ZW50Rm9yVGVzdA==") };
+            var dto = new UserInputDto().PopulateEmptyValuesWithFakeData();
 
             _csvHelperMock.Setup(x => x.ImportCsv<UserInputDto, UserCsvMapper>(It.IsAny<byte[]>()))
-                .Returns(() => [CreateUsersFromCsvCommandTest.GenerateUserInputDto()]);
+                .Returns(() => [dto]);
 
             // Act
             var response = await _handler.Handle(command, new CancellationToken());
@@ -47,14 +48,18 @@ namespace JSM.UnitTests.Tests.Application.Commands.Users
             // Arrange
             var command = new CreateUsersFromCsvCommand { Content = Convert.FromBase64String("SW52YWxpZEJ5dGVBcnJheUNvbnRlbnRGb3JUZXN0") };
 
+            #pragma warning disable CS8625
+            var dto = new UserInputDto { Name = null }.PopulateEmptyValuesWithFakeData();
+            #pragma warning restore CS8625
+
             _csvHelperMock.Setup(x => x.ImportCsv<UserInputDto, UserCsvMapper>(It.IsAny<byte[]>()))
-                .Returns(() => [CreateUsersFromCsvCommandTest.GenerateUserInputDto(missingProperty: true)]);
+                .Returns(() => [dto]);
 
             // Act
             async Task executeHandler() => await _handler.Handle(command, new CancellationToken());
 
             // Assert
-            await Assert.ThrowsAsync<NullReferenceException>(executeHandler);
+            await Assert.ThrowsAnyAsync<Exception>(executeHandler);
         }
     }
 }

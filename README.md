@@ -1,6 +1,7 @@
 # Code Challenge JSM
 Projeto referente ao Code Challenge da Juntos Somos Mais.<br/>
-Este protótipo faz uso de uma *In-Memory Database*, portanto nenhuma configuração prévia é necessária. Basta clonar a aplicação e executá-la.
+Por se tratar de um protótipo, este projeto faz uso de uma *In-Memory Database* e não implementa nenhum tipo de autenticação ou autorização, portanto não são necessárias configurações prévias. <br/>
+Basta clonar a aplicação e executá-la.
 <br/>
 <br/>
 
@@ -13,11 +14,11 @@ Sendo assim, os dados do CSV e do JSON são lidos através da execução de um *
 <br/>
 <br/>
 
-## Principais bibliotecas
+## Bibliotecas
 - CSVHelper para a leitura de arquivos CSV;<br/>
 - Newtonsoft.Json para a desserialização de arquivos JSON;<br/>
 - MediatR para implementação de um *mediator*;
-- FluentValidation para a validação dos *commands* durante as requisições;<br/>
+- FluentValidation para a validação das requisições;<br/>
 - XUnit, Moq e Bogus para os testes unitários;
 <br/>
 
@@ -38,6 +39,6 @@ Para mais informações, acessar a página do Swagger da API.
 <br/>
 
 ## Observações
-\* As orientações do teste descrevem quais devem ser os tipos de usuários de acordo com as coordenadas, porém em um deles são exibidas as coordenadas sem nenhuma descrição. Para este caso, assumi o tipo "Hard".
+\* As orientações do desafio descrevem quais devem ser os tipos de usuários de acordo com as coordenadas, porém em um deles são exibidas as coordenadas sem nenhuma descrição. Para este caso, assumi o tipo "Hard".
 <br/>
 
